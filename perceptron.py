@@ -23,3 +23,22 @@ for i in range(38):
     weights.append(np.random.randn() * 0.10)
 
 print(weights)
+print(len(weights))
+
+#initializing the bias term
+bias = 0.4
+
+#creating matrix of samples
+matrix = np.array(X)
+print(matrix)
+
+output = []
+#starting learning
+for i in range(38):
+    pred = 0
+    error = None
+    value = np.dot(matrix[i], weights) + bias
+    if value < 0:
+        pred = 0
+    else:
+        pred = 1
