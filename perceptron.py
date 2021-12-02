@@ -14,3 +14,12 @@ feature_scaler = StandardScaler()
 X = pd.DataFrame(feature_scaler.fit_transform(X))
 
 print(X)
+
+#the perceptron will have 38 input nodes
+
+#initializing random weights
+weights = []
+for i in range(39):
+    weights.append(np.random.randn() * 0.10)
+
+print(weights)
