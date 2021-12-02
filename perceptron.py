@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 #creating dataframe
 data_df = pd.read_csv('high_diamond_ranked_10min.csv', header=0)
@@ -13,6 +14,9 @@ y = data_df['blueWins'].values
 #scaling features
 feature_scaler = StandardScaler()
 X = pd.DataFrame(feature_scaler.fit_transform(X))
+
+#split training set into cross validation
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state = 42)
 
 #Weight vector
 
@@ -32,7 +36,6 @@ print(weights)
 Psudo code for algo:
 Let X be the set of training data
 Init weight with random values
-
 repeat
     for each training example X[i] do
         compute predicted output yk[i]
@@ -41,12 +44,9 @@ repeat
         end weight update for
     end training example for
 uuntil stopping condition met 
-
 notes: 
 learning weight is val btwn 0 and 1 used to influence val of old weight
-
 prediction error is 
-
 """
 print(len(weights))
 
