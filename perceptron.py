@@ -61,8 +61,9 @@ matrix = np.array(X)
 print(matrix)
 
 output = []
+
 #starting learning
-for i in range(38):
+for i in range(len(X)):
     pred = 0
     error = None
     value = np.dot(matrix[i], weights) + bias
@@ -74,4 +75,4 @@ for i in range(38):
         weights[j]=weights[j] + learning_rate*(y[i]-pred)*matrix[i][j]
 
 # Learning should be complete
-
+#we should do some validation
