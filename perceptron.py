@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -78,13 +80,11 @@ if __name__ == "__main__":
 
     #initializing random weights
     weights = []
+
+
+
     for i in range(38):
         weights.append(np.random.randn() * 0.10)
-
-    print(weights)
-
-    print(len(weights))
-
     #initializing the bias term
     bias = 0.4
 
@@ -97,5 +97,4 @@ if __name__ == "__main__":
     weights = Learn(weights, X_train, y_train, learning_rate, bias)
 
     #we should do some validation
-
     Test(weights, X_test,y_test)
