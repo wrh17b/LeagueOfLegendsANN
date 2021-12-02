@@ -28,6 +28,9 @@ print(len(weights))
 #initializing the bias term
 bias = 0.4
 
+#initializing the learning rate to start
+learning_rate = 0.5
+
 #creating matrix of samples
 matrix = np.array(X)
 print(matrix)
