@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
-def Learn(weights, X_train, y_train, learning_rate):
+def Learn(weights, X_train, y_train, learning_rate, bias):
     # creating matrix of samples
     matrix = np.array(X_train)
     print(matrix)
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
     # Learning should be complete
 
-    weights = Learn(weights, X_train, y_train, learning_rate)
+    weights = Learn(weights, X_train, y_train, learning_rate, bias)
 
     #we should do some validation
 
