@@ -19,7 +19,7 @@ print(X)
 
 #initializing random weights
 weights = []
-for i in range(39):
+for i in range(38):
     weights.append(np.random.randn() * 0.10)
 
 print(weights)
