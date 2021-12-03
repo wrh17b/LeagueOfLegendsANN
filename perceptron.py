@@ -90,7 +90,7 @@ if __name__ == "__main__":
                 print("No weights found, creating new")
                 for i in range(38):
                     weights.append(np.random.randn() * 0.10)
-                weights = Learn(weights, X_train, y_train, learning_rate, bias, threshold)
+                weights = Learn(weights, X_train, y_train, learning_rate, bias, epochs)
                 np.save(wf, np.array(weights))
 
     #testing the model on the test set
