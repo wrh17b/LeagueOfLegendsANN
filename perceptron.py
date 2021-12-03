@@ -1,20 +1,18 @@
 import os
-
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import sqlite3 as sql
 
-def Learn(weights, X_train, y_train, learning_rate, bias, threshold):
+def Learn(weights, X_train, y_train, learning_rate, bias, epochs):
     # creating matrix of samples
     matrix = np.array(X_train)
 
     # starting learning
-    for t in range(threshold):
+    for t in range(epochs):
         for i in range(len(X_train)):
             pred = 0
-            error = None
             value = np.dot(matrix[i], weights) + bias
             if value < 0:
                 pred = 0
@@ -25,14 +23,13 @@ def Learn(weights, X_train, y_train, learning_rate, bias, threshold):
     return weights
 
 def Test(weights, X_test, y_test, bias):
-
     # creating matrix of samples
     matrix = np.array(X_test)
+    
     output = []
     # starting learning
     for i in range(len(X_test)):
         pred = 0
-        error = None
         value = np.dot(matrix[i], weights) + bias
         if value < 0:
             pred = 0
@@ -58,21 +55,29 @@ if __name__ == "__main__":
     X = pd.DataFrame(data_df.iloc[:, 2:40])
     y = data_df['blueWins'].values
 
-
     #scaling features
     feature_scaler = StandardScaler()
     X = pd.DataFrame(feature_scaler.fit_transform(X))
+    
     #split training set into cross validation
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 42)
+    
     #the perceptron will have 38 input nodes
     #initializing random weights
     weights =[]
+    
     #initializing the bias term
     bias = 0.4
+    
     #initializing the learning rate to start
     learning_rate = 0.3
+    
     #initilizing the number of iterations to loop for when learning
-    threshold=1
+    epochs=100
+    
+    #saving the converged weights to file, so that every time the program
+    #is run, the model is not trying to relearn the weights for the training
+    #data
     try:
         with open("weights.npy","rb") as wf:
             print("Weights found, using old weights")
@@ -88,12 +93,14 @@ if __name__ == "__main__":
                 weights = Learn(weights, X_train, y_train, learning_rate, bias, threshold)
                 np.save(wf, np.array(weights))
 
-    #we should do some validation
+    #testing the model on the test set
     Test(weights, X_test,y_test, bias)
+    
+    #reporting the weights, and the top 3 most important weights (features)
     maxw = max(weights, key=abs)
     print(maxw)
     maxindex=weights.index(maxw)
     print(maxindex)
-    print(data_df.keys()[maxindex+1])
+    print(data_df.keys()[maxindex+2])
 
 
