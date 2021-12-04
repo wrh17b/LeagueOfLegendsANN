@@ -71,7 +71,7 @@ if __name__ == "__main__":
     bias = 0.9
 
     # initializing the learning rate to start
-    learning_rate = 0.3
+    learning_rate = 0.7
 
     # initializing the number of iterations to loop for when learning
     epochs = 100
